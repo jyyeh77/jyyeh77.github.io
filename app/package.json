@@ -1,0 +1,30 @@
+{
+  "name": "citibike-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-google-maps": "^2.3.4",
+    "angular-simple-logger": "^0.1.7",
+    "angular-ui-router": "^0.3.1",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.15.0",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.10.2",
+    "pg": "^6.1.0",
+    "request": "^2.74.0",
+    "sequelize": "^3.24.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon server.js",
+    "seed": "node seed.js",
+    "db-init": "./db-init.sh",
+    "postinstall": "npm run db-init"
+  },
+  "author": "",
+  "license": "ISC"
+}

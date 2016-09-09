@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Citibike For You</title>
+    <script src="/angular/angular.js"></script>
+    <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/app.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link href="/simple-sidebar.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+
+    <!--angular google maps dependencies-->
+    <script src="/lodash/lodash.min.js"></script>
+    <script src="/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script src="/angular-google-maps/dist/angular-google-maps.min.js"></script>
+
+    <!--ANGULAR SCRIPTS-->
+    <script src="/controllers/sidebar.controller.js" defer></script>
+    <script src="/controllers/map.controller.js" defer></script>
+    <script src="/states/about.state.js" defer></script>
+    <script src="/states/home.state.js" defer></script>
+    <script src="/factories/station.factory.js" defer></script>
+    <script src="/controllers/info.controller.js" defer></script>
+    <script src="/states/info.state.js" defer></script>
+
+</head>
+<body ng-app="citibike">
+
+<div class="container" style="margin-right: 0px">
+    <div class="row">
+
+        <!--SIDEBAR-->
+        <div id="wrapper" ng-class="{'toggled': isToggled}" ng-controller="SidebarCtrl">
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a ui-sref="home">
+                            Plan Your Ride
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="about">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Favorites</a>
+                    </li>
+                    <li>
+                        <text>Start: {{start.name}} </text> <button type="button" class="btn btn-default btn-xs remove-btn" ng-show="startLocked" ng-click="unlockStart()">X</button>
+                    </li>
+                    <li>
+                        <text>End: {{end.name}}</text> <button type="button" class="btn btn-default btn-xs remove-btn" ng-show="endLocked" ng-click="unlockEnd()">X</button>
+                    </li>
+                    <button id="startBtn" class="btn btn-primary" ng-show="start&&!startLocked" ng-click="lockStart()">Set Start</button>
+                    <br>
+                    <button id="endBtn" class="btn btn-primary" ng-show="end&&!endLocked" ng-click="lockEnd()">Set End</button>
+                    <br>
+                    <button class="btn btn-danger" ui-sref="info" ng-show="startLocked&&endLocked">Trip Information</button>
+                    <br>
+                    <button class="btn btn-default" ng-click="resetMarkers()">Clear Markers</button>
+                    <br>
+                    <button class="btn btn-success" ng-click="setToggle()">Toggle Menu</button>
+                </ul>
+            </div>
+        </div>
+
+        <!--STATE TEMPLATES GO HERE!-->
+        <ui-view></ui-view>
+
+    </div>
+
+</div>
+</body>
+</html>
